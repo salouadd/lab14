@@ -49,4 +49,4 @@ com.example.securestoragejava
 4.  **Reset** : Le bouton "Réinitialiser tout" efface l'intégralité des traces locales.
 
 ---
-*Développé dans le cadre du Lab Persistance & Sécurité Android.*
+

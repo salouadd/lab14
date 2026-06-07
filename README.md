@@ -2,6 +2,28 @@
 
 Ce projet est une application Android pédagogique développée en **Java** illustrant la mise en place d'une persistance locale complète et sécurisée. L'objectif est de maîtriser les différents types de stockage Android tout en appliquant des règles strictes de sécurité.
 
+## 📊 Schéma de l'Architecture
+
+```mermaid
+graph TD
+    UI[MainActivity / Interface] -->|Saisie & Commandes| Logic{Gestionnaires d'Actions}
+    
+    subgraph "Stockage Interne (Données Privées)"
+        Logic -->|Simple| AP[AppPrefs: Thème, Langue]
+        Logic -->|Chiffré| SP[SecurePrefs: Token API]
+        Logic -->|Fichiers| IS[Internal Storage: JSON, Texte]
+        Logic -->|Temporaire| CS[Cache: last_ui.txt]
+    end
+    
+    subgraph "Stockage Externe (App-Specific)"
+        Logic -->|Export| EX[External Storage: export.txt]
+    end
+    
+    SP -.->|Sécurisé par| KS[Android Keystore / MasterKey]
+    AP -.-> XML1[app_prefs.xml]
+    SP -.-> XML2[secure_prefs.xml]
+```
+
 ## 🚀 Objectifs d'apprentissage
 
 - **SharedPreferences** : Stockage de préférences non sensibles (thème, langue).
